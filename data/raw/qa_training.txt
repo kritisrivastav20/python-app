@@ -1,0 +1,475 @@
+Context: The Earth revolves around the Sun.
+Question: What does the Earth revolve around?
+Answer: The Sun. <END>
+
+Context: The Moon revolves around the Earth.
+Question: What does the Moon revolve around?
+Answer: The Earth. <END>
+
+Context: Jupiter is the largest planet in the Solar System.
+Question: Which is the largest planet in the Solar System?
+Answer: Jupiter. <END>
+
+Context: Mercury is the closest planet to the Sun.
+Question: Which planet is closest to the Sun?
+Answer: Mercury. <END>
+
+Context: Mars is often called the Red Planet.
+Question: Which planet is called the Red Planet?
+Answer: Mars. <END>
+
+Context: Saturn is famous for its large system of rings.
+Question: Which planet is famous for its rings?
+Answer: Saturn. <END>
+
+Context: The Sun is a star at the center of the Solar System.
+Question: What is the Sun?
+Answer: A star. <END>
+
+Context: The Earth has one natural satellite called the Moon.
+Question: What is Earth's natural satellite?
+Answer: The Moon. <END>
+
+Context: A year on Earth is approximately 365 days long.
+Question: How many days are approximately in an Earth year?
+Answer: 365 days. <END>
+
+Context: The Earth rotates once approximately every 24 hours.
+Question: How long does one rotation of the Earth take?
+Answer: Approximately 24 hours. <END>
+
+Context: Water freezes at zero degrees Celsius.
+Question: At what temperature does water freeze?
+Answer: Zero degrees Celsius. <END>
+
+Context: Pure water boils at 100 degrees Celsius at standard atmospheric pressure.
+Question: At what temperature does pure water boil at standard atmospheric pressure?
+Answer: 100 degrees Celsius. <END>
+
+Context: Ice is the solid form of water.
+Question: What is the solid form of water?
+Answer: Ice. <END>
+
+Context: Water vapor is the gaseous form of water.
+Question: What is the gaseous form of water?
+Answer: Water vapor. <END>
+
+Context: Plants use sunlight to make food through photosynthesis.
+Question: What do plants use to make food during photosynthesis?
+Answer: Sunlight. <END>
+
+Context: Chlorophyll is the green pigment found in many plants.
+Question: What pigment gives many plants their green color?
+Answer: Chlorophyll. <END>
+
+Context: Plants absorb water mainly through their roots.
+Question: Which part of a plant mainly absorbs water?
+Answer: The roots. <END>
+
+Context: Leaves are major sites of photosynthesis in many plants.
+Question: Where does much of photosynthesis occur in a plant?
+Answer: In the leaves. <END>
+
+Context: Oxygen is needed by humans for respiration.
+Question: Which gas do humans need for respiration?
+Answer: Oxygen. <END>
+
+Context: The human heart pumps blood through the body.
+Question: What does the human heart pump?
+Answer: Blood. <END>
+
+Context: The lungs help the body exchange oxygen and carbon dioxide.
+Question: Which organs help exchange oxygen and carbon dioxide?
+Answer: The lungs. <END>
+
+Context: The brain is part of the nervous system.
+Question: Which system contains the brain?
+Answer: The nervous system. <END>
+
+Context: The skeleton provides support and structure to the human body.
+Question: What provides support and structure to the human body?
+Answer: The skeleton. <END>
+
+Context: An adult human normally has 206 bones.
+Question: How many bones does an adult human normally have?
+Answer: 206 bones. <END>
+
+Context: The cheetah is the fastest land animal.
+Question: What is the fastest land animal?
+Answer: The cheetah. <END>
+
+Context: A whale is a mammal.
+Question: What type of animal is a whale?
+Answer: A mammal. <END>
+
+Context: Dolphins are mammals that live in water.
+Question: Are dolphins mammals or fish?
+Answer: Mammals. <END>
+
+Context: Penguins are birds that cannot fly.
+Question: Can penguins fly?
+Answer: No. <END>
+
+Context: Bees collect nectar from flowers.
+Question: What do bees collect from flowers?
+Answer: Nectar. <END>
+
+Context: A caterpillar transforms into a butterfly during metamorphosis.
+Question: What can a caterpillar transform into?
+Answer: A butterfly. <END>
+
+Context: Frogs begin their lives as tadpoles.
+Question: What are young frogs called during their early aquatic stage?
+Answer: Tadpoles. <END>
+
+Context: Herbivores primarily eat plants.
+Question: What do herbivores primarily eat?
+Answer: Plants. <END>
+
+Context: Carnivores primarily eat other animals.
+Question: What do carnivores primarily eat?
+Answer: Other animals. <END>
+
+Context: Omnivores eat both plants and animals.
+Question: What do omnivores eat?
+Answer: Both plants and animals. <END>
+
+Context: A computer processor executes instructions and performs calculations.
+Question: What does a computer processor execute?
+Answer: Instructions. <END>
+
+Context: RAM temporarily stores data that programs are actively using.
+Question: What does RAM temporarily store?
+Answer: Data being actively used by programs. <END>
+
+Context: A keyboard is an input device used to enter text and commands into a computer.
+Question: Is a keyboard an input or output device?
+Answer: An input device. <END>
+
+Context: A monitor is an output device that displays visual information.
+Question: Is a monitor an input or output device?
+Answer: An output device. <END>
+
+Context: A mouse is commonly used to control a pointer on a computer screen.
+Question: What does a computer mouse commonly control?
+Answer: A pointer on the screen. <END>
+
+Context: Software is a collection of instructions and programs used by a computer.
+Question: What is software?
+Answer: A collection of instructions and programs. <END>
+
+Context: Hardware refers to the physical components of a computer.
+Question: What does computer hardware refer to?
+Answer: The physical components of a computer. <END>
+
+Context: Python is a programming language used for many types of software development.
+Question: What is Python?
+Answer: A programming language. <END>
+
+Context: HTML is used to structure content on web pages.
+Question: What is HTML used for?
+Answer: Structuring content on web pages. <END>
+
+Context: CSS is used to control the presentation and appearance of web pages.
+Question: What is CSS used for?
+Answer: Controlling the presentation and appearance of web pages. <END>
+
+Context: JavaScript is commonly used to add interactive behavior to web pages.
+Question: What can JavaScript add to web pages?
+Answer: Interactive behavior. <END>
+
+Context: A database stores organized information so that it can be retrieved and managed.
+Question: What does a database store?
+Answer: Organized information. <END>
+
+Context: The Internet connects computer networks around the world.
+Question: What does the Internet connect?
+Answer: Computer networks around the world. <END>
+
+Context: A web browser retrieves and displays content from websites.
+Question: What does a web browser display?
+Answer: Content from websites. <END>
+
+Context: A URL identifies the location of a resource on a network such as the Web.
+Question: What does a URL identify?
+Answer: The location of a resource. <END>
+
+Context: HTTP is a protocol used for transferring web resources between clients and servers.
+Question: What is HTTP used for?
+Answer: Transferring web resources between clients and servers. <END>
+
+Context: India is a country in South Asia.
+Question: In which part of Asia is India located?
+Answer: South Asia. <END>
+
+Context: New Delhi is the capital of India.
+Question: What is the capital of India?
+Answer: New Delhi. <END>
+
+Context: Japan is an island country in East Asia.
+Question: In which part of Asia is Japan located?
+Answer: East Asia. <END>
+
+Context: Tokyo is the capital of Japan.
+Question: What is the capital of Japan?
+Answer: Tokyo. <END>
+
+Context: Paris is the capital of France.
+Question: What is the capital of France?
+Answer: Paris. <END>
+
+Context: Canberra is the capital of Australia.
+Question: What is the capital of Australia?
+Answer: Canberra. <END>
+
+Context: Ottawa is the capital of Canada.
+Question: What is the capital of Canada?
+Answer: Ottawa. <END>
+
+Context: The Pacific Ocean is the largest ocean on Earth.
+Question: What is the largest ocean on Earth?
+Answer: The Pacific Ocean. <END>
+
+Context: Mount Everest is Earth's highest mountain above sea level.
+Question: What is Earth's highest mountain above sea level?
+Answer: Mount Everest. <END>
+
+Context: The Nile is a major river in northeastern Africa.
+Question: On which continent is the Nile located?
+Answer: Africa. <END>
+
+Context: The Sahara is a large desert in northern Africa.
+Question: Where is the Sahara located?
+Answer: Northern Africa. <END>
+
+Context: The equator divides Earth into the Northern and Southern Hemispheres.
+Question: What does the equator divide Earth into?
+Answer: The Northern and Southern Hemispheres. <END>
+
+Context: A triangle has three sides.
+Question: How many sides does a triangle have?
+Answer: Three. <END>
+
+Context: A square has four equal sides.
+Question: How many equal sides does a square have?
+Answer: Four. <END>
+
+Context: A rectangle has four sides and four right angles.
+Question: How many right angles does a rectangle have?
+Answer: Four. <END>
+
+Context: Multiplication is repeated addition of equal groups.
+Question: What can multiplication represent?
+Answer: Repeated addition of equal groups. <END>
+
+Context: Division can be used to separate a quantity into equal groups.
+Question: What can division be used to do?
+Answer: Separate a quantity into equal groups. <END>
+
+Context: An even integer is divisible by two without a remainder.
+Question: What number divides every even integer without a remainder?
+Answer: Two. <END>
+
+Context: A prime number has exactly two positive factors, one and itself.
+Question: How many positive factors does a prime number have?
+Answer: Two. <END>
+
+Context: Ten multiplied by five equals fifty.
+Question: What is ten multiplied by five?
+Answer: Fifty. <END>
+
+Context: One hundred divided by ten equals ten.
+Question: What is one hundred divided by ten?
+Answer: Ten. <END>
+
+Context: Sound is produced by vibrations.
+Question: What produces sound?
+Answer: Vibrations. <END>
+
+Context: Light travels faster than sound.
+Question: Which travels faster, light or sound?
+Answer: Light. <END>
+
+Context: Gravity attracts objects with mass toward one another.
+Question: What does gravity do to objects with mass?
+Answer: It attracts them toward one another. <END>
+
+Context: A magnet has two poles called north and south.
+Question: What are the two poles of a magnet called?
+Answer: North and south. <END>
+
+Context: Electricity can flow through materials called conductors.
+Question: What are materials that allow electricity to flow called?
+Answer: Conductors. <END>
+
+Context: Rubber is commonly used as an electrical insulator.
+Question: Is rubber commonly a conductor or an insulator?
+Answer: An insulator. <END>
+
+Context: Solar panels convert energy from sunlight into electrical energy.
+Question: What energy source do solar panels use?
+Answer: Sunlight. <END>
+
+Context: Wind turbines use the motion of air to generate electricity.
+Question: What do wind turbines use to generate electricity?
+Answer: The motion of air. <END>
+
+Context: Renewable energy comes from sources that are naturally replenished.
+Question: What is special about renewable energy sources?
+Answer: They are naturally replenished. <END>
+
+Context: Fossil fuels include coal, oil, and natural gas.
+Question: Name one fossil fuel.
+Answer: Coal. <END>
+
+Context: George Washington was the first president of the United States.
+Question: Who was the first president of the United States?
+Answer: George Washington. <END>
+
+Context: The ancient Egyptians built large pyramids as monumental structures and tombs.
+Question: Which ancient civilization built the famous pyramids of Egypt?
+Answer: The ancient Egyptians. <END>
+
+Context: The printing press helped make written information easier to reproduce and distribute.
+Question: What did the printing press make easier to reproduce?
+Answer: Written information. <END>
+
+Context: The wheel is an ancient invention that made transportation and machinery easier to develop.
+Question: What ancient invention helped the development of transportation?
+Answer: The wheel. <END>
+
+Context: Alexander Graham Bell is widely associated with the development of the telephone.
+Question: Who is widely associated with the development of the telephone?
+Answer: Alexander Graham Bell. <END>
+
+Context: The airplane made powered human flight possible.
+Question: What form of transportation made powered human flight possible?
+Answer: The airplane. <END>
+
+Context: A thermometer is used to measure temperature.
+Question: What does a thermometer measure?
+Answer: Temperature. <END>
+
+Context: A ruler is used to measure length.
+Question: What does a ruler measure?
+Answer: Length. <END>
+
+Context: A clock is used to measure and display time.
+Question: What does a clock measure and display?
+Answer: Time. <END>
+
+Context: A compass can be used to determine direction.
+Question: What can a compass determine?
+Answer: Direction. <END>
+
+Context: A microscope makes very small objects appear larger so they can be studied.
+Question: What does a microscope help us study?
+Answer: Very small objects. <END>
+
+Context: A telescope is used to observe distant objects such as stars and planets.
+Question: What does a telescope help us observe?
+Answer: Distant objects. <END>
+
+Context: A library contains collections of books and other information resources.
+Question: What can be found in a library?
+Answer: Books and other information resources. <END>
+
+Context: A teacher helps students learn knowledge and skills.
+Question: What does a teacher help students do?
+Answer: Learn knowledge and skills. <END>
+
+Context: A doctor diagnoses and treats illnesses and injuries.
+Question: What does a doctor treat?
+Answer: Illnesses and injuries. <END>
+
+Context: A firefighter responds to fires and other emergencies.
+Question: What does a firefighter respond to?
+Answer: Fires and other emergencies. <END>
+
+Context: A farmer grows crops or raises animals for food and other products.
+Question: What can a farmer grow?
+Answer: Crops. <END>
+
+Context: Bread can be made from flour, water, yeast, and other ingredients.
+Question: What is one ingredient commonly used to make bread?
+Answer: Flour. <END>
+
+Context: Milk is commonly used to make products such as cheese and yogurt.
+Question: Name a product that can be made from milk.
+Answer: Cheese. <END>
+
+Context: Fruits and vegetables contain nutrients needed by the body.
+Question: What do fruits and vegetables contain?
+Answer: Nutrients. <END>
+
+Context: Drinking water helps the body stay hydrated.
+Question: What helps the body stay hydrated?
+Answer: Drinking water. <END>
+
+Context: Sleep gives the body and brain time to rest and recover.
+Question: What gives the body and brain time to rest and recover?
+Answer: Sleep. <END>
+
+Context: Regular physical activity can help strengthen muscles and improve fitness.
+Question: What can regular physical activity help strengthen?
+Answer: Muscles. <END>
+
+Context: Recycling allows some used materials to be processed and made into new products.
+Question: What can happen to materials that are recycled?
+Answer: They can be made into new products. <END>
+
+Context: Trees absorb carbon dioxide and release oxygen during photosynthesis.
+Question: Which gas do trees absorb during photosynthesis?
+Answer: Carbon dioxide. <END>
+
+Context: Trees absorb carbon dioxide and release oxygen during photosynthesis.
+Question: Which gas do trees release during photosynthesis?
+Answer: Oxygen. <END>
+
+Context: The blue whale is larger than the elephant.
+Question: Which is larger, the blue whale or the elephant?
+Answer: The blue whale. <END>
+
+Context: Mercury is closer to the Sun than Earth.
+Question: Which is closer to the Sun, Mercury or Earth?
+Answer: Mercury. <END>
+
+Context: A bicycle has two wheels while a tricycle has three wheels.
+Question: How many wheels does a bicycle have?
+Answer: Two. <END>
+
+Context: A bicycle has two wheels while a tricycle has three wheels.
+Question: How many wheels does a tricycle have?
+Answer: Three. <END>
+
+Context: Sarah has a red bag and Emma has a blue bag.
+Question: Who has the red bag?
+Answer: Sarah. <END>
+
+Context: Sarah has a red bag and Emma has a blue bag.
+Question: Who has the blue bag?
+Answer: Emma. <END>
+
+Context: The cat is under the table while the dog is beside the door.
+Question: Where is the cat?
+Answer: Under the table. <END>
+
+Context: The cat is under the table while the dog is beside the door.
+Question: Where is the dog?
+Answer: Beside the door. <END>
+
+Context: Ravi went to the market because he needed vegetables.
+Question: Why did Ravi go to the market?
+Answer: He needed vegetables. <END>
+
+Context: Maya carried an umbrella because it was raining.
+Question: Why did Maya carry an umbrella?
+Answer: Because it was raining. <END>
+
+Context: The train arrived at eight in the morning and departed at eight thirty.
+Question: When did the train arrive?
+Answer: Eight in the morning. <END>
+
+Context: The train arrived at eight in the morning and departed at eight thirty.
+Question: When did the train depart?
+Answer: Eight thirty. <END>

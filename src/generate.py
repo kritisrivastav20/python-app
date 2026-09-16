@@ -1,120 +1,169 @@
 import torch
 
-from tokenizer import BPETokenizer
 from model import TinyGPT
+from tokenizer import BPETokenizer
 
 
-# --------------------------------------------------
-# Configuration
-# --------------------------------------------------
+MODEL_PATH = "tinygpt-best.pt"
+TOKENIZER_PATH = "tokenizer.json"
 
-VOCAB_SIZE = 300
-BLOCK_SIZE = 32
-
-EMBEDDING_DIM = 64
-NUM_HEADS = 4
-NUM_LAYERS = 4
+MAX_NEW_TOKENS = 100
+TEMPERATURE = 0.7
+TOP_K = 20
 
 
-# --------------------------------------------------
-# Device
-# --------------------------------------------------
+# select device
+#
+def get_device():
+    if torch.backends.mps.is_available():
+        return torch.device("mps")
 
-device = (
-    "mps"
-    if torch.backends.mps.is_available()
-    else "cpu"
-)
-
-print("Device:", device)
+    return torch.device("cpu")
 
 
-# --------------------------------------------------
-# Load training text
-# --------------------------------------------------
+# load tokenizer
+#
+def load_tokenizer():
+    tokenizer = BPETokenizer()
 
-with open(
-    "data/input.txt",
-    "r",
-    encoding="utf-8"
-) as f:
-    text = f.read()
+    tokenizer.load(
+        TOKENIZER_PATH
+    )
 
-
-# --------------------------------------------------
-# Rebuild tokenizer
-# --------------------------------------------------
-
-tokenizer = BPETokenizer()
-
-tokenizer.train(
-    text,
-    vocab_size=VOCAB_SIZE
-)
+    return tokenizer
 
 
-# --------------------------------------------------
-# Create model
-# --------------------------------------------------
-
-model = TinyGPT(
-    vocab_size=VOCAB_SIZE,
-    embedding_dim=EMBEDDING_DIM,
-    block_size=BLOCK_SIZE,
-    num_heads=NUM_HEADS,
-    num_layers=NUM_LAYERS
-)
-
-model = model.to(device)
-
-
-# --------------------------------------------------
-# Load trained parameters
-# --------------------------------------------------
-
-model.load_state_dict(
-    torch.load(
-        "tinygpt.pt",
+# load trained model
+#
+def load_model(
+    model_path,
+    device
+):
+    checkpoint = torch.load(
+        model_path,
         map_location=device
     )
-)
 
-model.eval()
+    model = TinyGPT(
+        vocab_size=checkpoint[
+            "vocab_size"
+        ],
+        embedding_dim=checkpoint[
+            "embedding_dim"
+        ],
+        block_size=checkpoint[
+            "block_size"
+        ],
+        num_heads=checkpoint[
+            "num_heads"
+        ],
+        num_layers=checkpoint[
+            "num_layers"
+        ]
+    )
+
+    model.load_state_dict(
+        checkpoint[
+            "model_state_dict"
+        ]
+    )
+
+    model = model.to(
+        device
+    )
+
+    model.eval()
+
+    return model
 
 
-# --------------------------------------------------
-# Prompt
-# --------------------------------------------------
+# generate response
+#
+def generate_text(
+    prompt,
+    model,
+    tokenizer,
+    device
+):
+    prompt_tokens = tokenizer.encode(
+        prompt
+    )
 
-prompt = "The Earth"
+    prompt_tokens = [
+        tokenizer.bos_token_id
+    ] + prompt_tokens
 
-prompt_tokens = tokenizer.encode(prompt)
+    input_tensor = torch.tensor(
+        [prompt_tokens],
+        dtype=torch.long,
+        device=device
+    )
 
-input_tensor = torch.tensor(
-    [prompt_tokens],
-    dtype=torch.long,
-    device=device
-)
+    generated_tokens = model.generate(
+        input_tensor,
+        max_new_tokens=MAX_NEW_TOKENS,
+        temperature=TEMPERATURE,
+        top_k=TOP_K,
+        eos_token_id=tokenizer.eos_token_id,
+        blocked_token_ids=[
+            tokenizer.pad_token_id,
+            tokenizer.bos_token_id
+        ]
+    )
+
+    generated_text = tokenizer.decode(
+        generated_tokens[0].tolist()
+    )
+
+    return generated_text
 
 
-# --------------------------------------------------
-# Generate
-# --------------------------------------------------
+# run model
+#
+def main():
+    device = get_device()
 
-generated_tokens = model.generate(
-    input_tensor,
-    max_new_tokens=100,
-    temperature=0.2
-)
+    print(
+        "Using device:",
+        device
+    )
+
+    tokenizer = load_tokenizer()
+
+    model = load_model(
+        MODEL_PATH,
+        device
+    )
+
+    while True:
+        print()
+
+        prompt = input(
+            "You: "
+        ).strip()
+
+        if prompt.lower() in {
+            "exit",
+            "quit"
+        }:
+            break
+
+        if len(prompt) == 0:
+            continue
+
+        response = generate_text(
+            prompt,
+            model,
+            tokenizer,
+            device
+        )
+
+        print()
+        print(
+            "TinyGPT:",
+            response
+        )
 
 
-# --------------------------------------------------
-# Decode
-# --------------------------------------------------
-
-generated_text = tokenizer.decode(
-    generated_tokens[0].tolist()
-)
-
-print("\nGenerated text:\n")
-print(generated_text)
+if __name__ == "__main__":
+    main()

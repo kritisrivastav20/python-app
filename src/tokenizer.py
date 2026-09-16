@@ -1,140 +1,248 @@
+from tokenizers import Tokenizer
+from tokenizers.models import BPE
+from tokenizers.trainers import BpeTrainer
+from tokenizers.pre_tokenizers import ByteLevel
+from tokenizers.decoders import ByteLevel as ByteLevelDecoder
+
+
 class BPETokenizer:
+    PAD_TOKEN = "<PAD>"
+    BOS_TOKEN = "<BOS>"
+    EOS_TOKEN = "<EOS>"
+
+    CONTEXT_TOKEN = "<CONTEXT>"
+    QUESTION_TOKEN = "<QUESTION>"
+    ANSWER_TOKEN = "<ANSWER>"
+
     def __init__(self):
-        self.merges = {}
-        self.vocab = {i: bytes([i]) for i in range(256)}
+        self.tokenizer = None
 
-    def get_pair_counts(self, tokens):
-        counts = {}
 
-        for pair in zip(tokens, tokens[1:]):
-            counts[pair] = counts.get(pair, 0) + 1
+    # train tokenizer
+    #
+    def train(
+        self,
+        text,
+        vocab_size=5000
+    ):
+        tokenizer = Tokenizer(
+            BPE(
+                byte_fallback=True
+            )
+        )
 
-        return counts
+        tokenizer.pre_tokenizer = ByteLevel(
+            add_prefix_space=False
+        )
 
-    def merge_pair(self, tokens, pair, new_token_id):
-        new_tokens = []
-        i = 0
+        tokenizer.decoder = ByteLevelDecoder()
 
-        while i < len(tokens):
-            if (
-                i < len(tokens) - 1
-                and tokens[i] == pair[0]
-                and tokens[i + 1] == pair[1]
-            ):
-                new_tokens.append(new_token_id)
-                i += 2
-            else:
-                new_tokens.append(tokens[i])
-                i += 1
+        trainer = BpeTrainer(
+            vocab_size=vocab_size,
+            special_tokens=[
+                self.PAD_TOKEN,
+                self.BOS_TOKEN,
+                self.EOS_TOKEN,
+                self.CONTEXT_TOKEN,
+                self.QUESTION_TOKEN,
+                self.ANSWER_TOKEN
+            ],
+            initial_alphabet=ByteLevel.alphabet()
+        )
 
-        return new_tokens
+        tokenizer.train_from_iterator(
+            [text],
+            trainer=trainer
+        )
 
-    def train(self, text, vocab_size):
-        if vocab_size < 256:
-            raise ValueError("vocab_size must be at least 256")
+        self.tokenizer = tokenizer
 
-        tokens = list(text.encode("utf-8"))
+        print(
+            "Tokenizer training complete"
+        )
 
-        num_merges = vocab_size - 256
+        print(
+            "Vocabulary size:",
+            self.vocab_size
+        )
 
-        for i in range(num_merges):
-            pair_counts = self.get_pair_counts(tokens)
 
-            if not pair_counts:
-                break
-
-            pair = max(pair_counts, key=pair_counts.get)
-
-            new_token_id = 256 + i
-
-            tokens = self.merge_pair(
-                tokens,
-                pair,
-                new_token_id
+    # encode text into token ids
+    #
+    def encode(
+        self,
+        text,
+        add_special_tokens=False
+    ):
+        if self.tokenizer is None:
+            raise ValueError(
+                "Tokenizer has not been trained or loaded."
             )
 
-            self.merges[pair] = new_token_id
+        encoding = self.tokenizer.encode(
+            text
+        )
 
-            self.vocab[new_token_id] = (
-                self.vocab[pair[0]] + self.vocab[pair[1]]
+        token_ids = encoding.ids
+
+        if add_special_tokens:
+            token_ids = [
+                self.bos_token_id
+            ] + token_ids + [
+                self.eos_token_id
+            ]
+
+        return token_ids
+
+
+    # decode token ids into text
+    #
+    def decode(
+        self,
+        token_ids
+    ):
+        if self.tokenizer is None:
+            raise ValueError(
+                "Tokenizer has not been trained or loaded."
             )
 
-        print("Tokenizer training complete")
-        print("Vocabulary size:", len(self.vocab))
+        token_ids = [
+            int(token_id)
+            for token_id in token_ids
+        ]
 
-    def encode(self, text):
-        tokens = list(text.encode("utf-8"))
-
-        while len(tokens) >= 2:
-            pair_counts = self.get_pair_counts(tokens)
-
-            possible_merges = {
-                pair: self.merges[pair]
-                for pair in pair_counts
-                if pair in self.merges
+        token_ids = [
+            token_id
+            for token_id in token_ids
+            if token_id not in {
+                self.pad_token_id,
+                self.bos_token_id,
+                self.eos_token_id
             }
+        ]
 
-            if not possible_merges:
-                break
-
-            pair = min(
-                possible_merges,
-                key=possible_merges.get
-            )
-
-            tokens = self.merge_pair(
-                tokens,
-                pair,
-                self.merges[pair]
-            )
-
-        return tokens
-
-    def decode(self, tokens):
-        raw_bytes = b"".join(
-            self.vocab[token]
-            for token in tokens
+        return self.tokenizer.decode(
+            token_ids
         )
 
-        return raw_bytes.decode(
-            "utf-8",
-            errors="replace"
+
+    # save tokenizer
+    #
+    def save(
+        self,
+        path
+    ):
+        if self.tokenizer is None:
+            raise ValueError(
+                "Tokenizer has not been trained or loaded."
+            )
+
+        self.tokenizer.save(
+            path
         )
 
+        print(
+            "Tokenizer saved to",
+            path
+        )
+
+
+    # load tokenizer
+    #
+    def load(
+        self,
+        path
+    ):
+        self.tokenizer = (
+            Tokenizer.from_file(
+                path
+            )
+        )
+
+        print(
+            "Tokenizer loaded from",
+            path
+        )
+
+        print(
+            "Vocabulary size:",
+            self.vocab_size
+        )
+
+
+    @property
+    def vocab_size(self):
+        if self.tokenizer is None:
+            return 0
+
+        return self.tokenizer.get_vocab_size()
+
+
+    @property
+    def pad_token_id(self):
+        return self.tokenizer.token_to_id(
+            self.PAD_TOKEN
+        )
+
+
+    @property
+    def bos_token_id(self):
+        return self.tokenizer.token_to_id(
+            self.BOS_TOKEN
+        )
+
+
+    @property
+    def eos_token_id(self):
+        return self.tokenizer.token_to_id(
+            self.EOS_TOKEN
+        )
+
+    @property
+    def context_token_id(self):
+        return self.tokenizer.token_to_id(
+            self.CONTEXT_TOKEN
+        )
+
+
+    @property
+    def question_token_id(self):
+        return self.tokenizer.token_to_id(
+            self.QUESTION_TOKEN
+        )
+
+
+    @property
+    def answer_token_id(self):
+        return self.tokenizer.token_to_id(
+            self.ANSWER_TOKEN
+        )
 
 if __name__ == "__main__":
-    tokenizer = BPETokenizer()
-
-    training_text = """
-    hello world
-    hello GPT
-    hello machine learning
-    hello artificial intelligence
+    text = """
+    The boy is reading a book.
+    The programmer is writing Python code.
+    Quantum computing uses quantum mechanics.
     """
 
+    tokenizer = BPETokenizer()
+
     tokenizer.train(
-        training_text,
-        vocab_size=300
+        text,
+        vocab_size=500
     )
 
-    text = "hello GPT"
+    tokens = tokenizer.encode(
+        "Photosynthesis converts sunlight into energy."
+    )
 
-    encoded = tokenizer.encode(text)
-    decoded = tokenizer.decode(encoded)
+    print()
+    print(
+        "Token IDs:",
+        tokens
+    )
 
-    print("\nOriginal:")
-    print(text)
-
-    print("\nEncoded:")
-    print(encoded)
-
-    print("\nDecoded:")
-    print(decoded)
-
-    texts = [
-    "hello",
-    "hello hello",
-    "GPT",
-    "machine learning",
-    "🚀",
-]
+    print(
+        "Decoded:",
+        tokenizer.decode(tokens)
+    )

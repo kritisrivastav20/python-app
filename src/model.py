@@ -6,12 +6,30 @@ import torch.nn.functional as F
 
 
 class SelfAttentionHead(nn.Module):
-    def __init__(self, embedding_dim: int, head_dim: int):
+    def __init__(
+        self,
+        embedding_dim: int,
+        head_dim: int
+    ):
         super().__init__()
 
-        self.key = nn.Linear(embedding_dim, head_dim, bias=False)
-        self.query = nn.Linear(embedding_dim, head_dim, bias=False)
-        self.value = nn.Linear(embedding_dim, head_dim, bias=False)
+        self.key = nn.Linear(
+            embedding_dim,
+            head_dim,
+            bias=False
+        )
+
+        self.query = nn.Linear(
+            embedding_dim,
+            head_dim,
+            bias=False
+        )
+
+        self.value = nn.Linear(
+            embedding_dim,
+            head_dim,
+            bias=False
+        )
 
     def forward(self, x):
         # x shape:
@@ -23,20 +41,32 @@ class SelfAttentionHead(nn.Module):
         v = self.value(x)
 
         # Compare queries against keys
-        attention_scores = q @ k.transpose(-2, -1)
+        attention_scores = (
+            q @ k.transpose(-2, -1)
+        )
 
         # Scale scores for numerical stability
-        attention_scores = attention_scores / math.sqrt(k.shape[-1])
+        attention_scores = (
+            attention_scores
+            / math.sqrt(k.shape[-1])
+        )
 
         # Causal mask:
         # token at position t can only see positions <= t
         mask = torch.tril(
-            torch.ones(T, T, device=x.device, dtype=torch.bool)
+            torch.ones(
+                T,
+                T,
+                device=x.device,
+                dtype=torch.bool
+            )
         )
 
-        attention_scores = attention_scores.masked_fill(
-            ~mask,
-            float("-inf")
+        attention_scores = (
+            attention_scores.masked_fill(
+                ~mask,
+                float("-inf")
+            )
         )
 
         attention_weights = F.softmax(
@@ -44,7 +74,9 @@ class SelfAttentionHead(nn.Module):
             dim=-1
         )
 
-        output = attention_weights @ v
+        output = (
+            attention_weights @ v
+        )
 
         return output
 
@@ -62,7 +94,10 @@ class MultiHeadAttention(nn.Module):
                 "embedding_dim must be divisible by num_heads"
             )
 
-        head_dim = embedding_dim // num_heads
+        head_dim = (
+            embedding_dim
+            // num_heads
+        )
 
         self.heads = nn.ModuleList([
             SelfAttentionHead(
@@ -85,7 +120,10 @@ class MultiHeadAttention(nn.Module):
         ]
 
         # Join them along the embedding dimension
-        x = torch.cat(outputs, dim=-1)
+        x = torch.cat(
+            outputs,
+            dim=-1
+        )
 
         # Mix information from all heads
         x = self.projection(x)
@@ -94,13 +132,22 @@ class MultiHeadAttention(nn.Module):
 
 
 class FeedForward(nn.Module):
-    def __init__(self, embedding_dim: int):
+    def __init__(
+        self,
+        embedding_dim: int
+    ):
         super().__init__()
 
         self.network = nn.Sequential(
-            nn.Linear(embedding_dim, 4 * embedding_dim),
+            nn.Linear(
+                embedding_dim,
+                4 * embedding_dim
+            ),
             nn.GELU(),
-            nn.Linear(4 * embedding_dim, embedding_dim)
+            nn.Linear(
+                4 * embedding_dim,
+                embedding_dim
+            )
         )
 
     def forward(self, x):
@@ -115,14 +162,18 @@ class TransformerBlock(nn.Module):
     ):
         super().__init__()
 
-        self.layer_norm_1 = nn.LayerNorm(embedding_dim)
+        self.layer_norm_1 = nn.LayerNorm(
+            embedding_dim
+        )
 
         self.attention = MultiHeadAttention(
             embedding_dim=embedding_dim,
             num_heads=num_heads
         )
 
-        self.layer_norm_2 = nn.LayerNorm(embedding_dim)
+        self.layer_norm_2 = nn.LayerNorm(
+            embedding_dim
+        )
 
         self.feed_forward = FeedForward(
             embedding_dim=embedding_dim
@@ -143,48 +194,6 @@ class TransformerBlock(nn.Module):
 
 
 class TinyGPT(nn.Module):
-    @torch.no_grad()
-    def generate(
-        self,
-        token_ids,
-        max_new_tokens=50,
-        temperature=1.0
-    ):
-        self.eval()
-
-        for _ in range(max_new_tokens):
-
-            # Keep only the most recent context
-            token_ids_context = token_ids[:, -self.block_size:]
-
-            logits, _ = self(token_ids_context)
-
-            # Take predictions for the last position
-            logits = logits[:, -1, :]
-
-            # Control randomness
-            logits = logits / temperature
-
-            probabilities = F.softmax(
-                logits,
-                dim=-1
-            )
-
-            # Sample one next token
-            next_token = torch.multinomial(
-                probabilities,
-                num_samples=1
-            )
-
-            # Append it to the sequence
-            token_ids = torch.cat(
-                [token_ids, next_token],
-                dim=1
-            )
-
-        return token_ids
-
-
     def __init__(
         self,
         vocab_size: int,
@@ -226,30 +235,50 @@ class TinyGPT(nn.Module):
             vocab_size
         )
 
-    def forward(self, token_ids, targets=None):
+    def forward(
+        self,
+        token_ids,
+        targets=None
+    ):
         _, T = token_ids.shape
 
         if T > self.block_size:
             raise ValueError(
-                f"Sequence length {T} exceeds block size {self.block_size}"
+                f"Sequence length {T} exceeds "
+                f"block size {self.block_size}"
             )
 
-        token_embeddings = self.token_embedding(token_ids)
+        token_embeddings = (
+            self.token_embedding(
+                token_ids
+            )
+        )
 
         positions = torch.arange(
             T,
             device=token_ids.device
         )
 
-        position_embeddings = self.position_embedding(
-            positions
+        position_embeddings = (
+            self.position_embedding(
+                positions
+            )
         )
 
-        x = token_embeddings + position_embeddings
-        x = self.blocks(x)
-        x = self.final_layer_norm(x)
+        x = (
+            token_embeddings
+            + position_embeddings
+        )
 
-        logits = self.lm_head(x)
+        x = self.blocks(x)
+
+        x = self.final_layer_norm(
+            x
+        )
+
+        logits = self.lm_head(
+            x
+        )
 
         loss = None
 
@@ -272,6 +301,149 @@ class TinyGPT(nn.Module):
 
         return logits, loss
 
+    # generate new tokens
+    #
+    @torch.no_grad()
+    def generate(
+        self,
+        token_ids,
+        max_new_tokens=50,
+        temperature=0.8,
+        top_k=20,
+        eos_token_id=None,
+        blocked_token_ids=None,
+        do_sample=True
+    ):
+        self.eval()
+
+        if temperature <= 0:
+            raise ValueError(
+                "temperature must be greater than 0"
+            )
+
+        for _ in range(
+            max_new_tokens
+        ):
+
+            # Keep only tokens that fit
+            # inside the model context window
+            token_ids_context = token_ids[
+                :,
+                -self.block_size:
+            ]
+
+            # Forward pass
+            logits, _ = self(
+                token_ids_context
+            )
+
+            # We only need prediction
+            # from the final position
+            logits = logits[
+                :,
+                -1,
+                :
+            ]
+
+            # Prevent unwanted special
+            # tokens from being generated
+            if blocked_token_ids is not None:
+
+                for token_id in blocked_token_ids:
+
+                    if token_id is None:
+                        continue
+
+                    logits[
+                        :,
+                        token_id
+                    ] = float("-inf")
+
+            # Temperature
+            logits = (
+                logits
+                / temperature
+            )
+
+            # Keep only top-k tokens
+            if top_k is not None:
+
+                k = min(
+                    top_k,
+                    logits.shape[-1]
+                )
+
+                top_values, _ = torch.topk(
+                    logits,
+                    k
+                )
+
+                cutoff = top_values[
+                    :,
+                    -1:
+                ]
+
+                logits = logits.masked_fill(
+                    logits < cutoff,
+                    float("-inf")
+                )
+
+            # --------------------------------------
+            # Select next token
+            # --------------------------------------
+
+            if do_sample:
+
+                probabilities = F.softmax(
+                    logits,
+                    dim=-1
+                )
+
+                next_token = torch.multinomial(
+                    probabilities,
+                    num_samples=1
+                )
+
+            else:
+
+                next_token = torch.argmax(
+                    logits,
+                    dim=-1,
+                    keepdim=True
+                )
+
+            # --------------------------------------
+            # Append generated token
+            # --------------------------------------
+
+            token_ids = torch.cat(
+                [
+                    token_ids,
+                    next_token
+                ],
+                dim=1
+            )
+
+            # --------------------------------------
+            # Stop when EOS is generated
+            # --------------------------------------
+
+            if eos_token_id is not None:
+
+                # Current QA generation uses
+                # batch size 1
+                generated_token_id = (
+                    next_token.item()
+                )
+
+                if (
+                    generated_token_id
+                    == eos_token_id
+                ):
+                    break
+
+        return token_ids
+
 
 if __name__ == "__main__":
     model = TinyGPT(
@@ -291,40 +463,79 @@ if __name__ == "__main__":
         [20, 30, 40, 50]
     ])
 
-    logits, loss = model(x)
+    logits, loss = model(
+        x
+    )
 
-    print("Input shape:")
-    print(x.shape)
+    print(
+        "Input shape:"
+    )
 
-    print("\nOutput logits shape:")
-    print(logits.shape)
+    print(
+        x.shape
+    )
 
-    print("\nLoss without targets:")
-    print(loss)
+    print(
+        "\nOutput logits shape:"
+    )
 
-    print("\nNumber of parameters:")
-    print(sum(p.numel() for p in model.parameters()))
+    print(
+        logits.shape
+    )
+
+    print(
+        "\nLoss without targets:"
+    )
+
+    print(
+        loss
+    )
+
+    print(
+        "\nNumber of parameters:"
+    )
+
+    print(
+        sum(
+            p.numel()
+            for p in model.parameters()
+        )
+    )
 
     # --------------------------------------------------
     # Test 2: Convert logits to probabilities
     # --------------------------------------------------
 
-    last_token_logits = logits[0, -1]
+    last_token_logits = (
+        logits[
+            0,
+            -1
+        ]
+    )
 
     probabilities = torch.softmax(
         last_token_logits,
         dim=-1
     )
 
-    print("\nProbability sum:")
-    print(probabilities.sum().item())
-
-    top_probabilities, top_tokens = torch.topk(
-        probabilities,
-        k=5
+    print(
+        "\nProbability sum:"
     )
 
-    print("\nTop 5 predicted tokens:")
+    print(
+        probabilities.sum().item()
+    )
+
+    top_probabilities, top_tokens = (
+        torch.topk(
+            probabilities,
+            k=5
+        )
+    )
+
+    print(
+        "\nTop 5 predicted tokens:"
+    )
 
     for token, probability in zip(
         top_tokens,
@@ -344,10 +555,49 @@ if __name__ == "__main__":
         [30, 40, 50, 60]
     ])
 
-    logits, loss = model(x, y)
+    logits, loss = model(
+        x,
+        y
+    )
 
-    print("\nLogits shape:")
-    print(logits.shape)
+    print(
+        "\nLogits shape:"
+    )
 
-    print("\nCross-entropy loss:")
-    print(loss.item())
+    print(
+        logits.shape
+    )
+
+    print(
+        "\nCross-entropy loss:"
+    )
+
+    print(
+        loss.item()
+    )
+
+    # --------------------------------------------------
+    # Test 4: Generation
+    # --------------------------------------------------
+
+    generated = model.generate(
+        x[:1],
+        max_new_tokens=5,
+        do_sample=False
+    )
+
+    print(
+        "\nGenerated token IDs:"
+    )
+
+    print(
+        generated
+    )
+
+    print(
+        "\nGenerated shape:"
+    )
+
+    print(
+        generated.shape
+    )

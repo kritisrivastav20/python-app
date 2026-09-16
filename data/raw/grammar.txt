@@ -1,0 +1,458 @@
+The boy runs.
+The girl runs.
+The dog runs.
+The cat runs.
+The bird flies.
+The boy walks.
+The girl walks.
+The dog walks.
+The cat sleeps.
+The dog sleeps.
+The baby sleeps.
+The bird sings.
+
+A boy runs.
+A girl walks.
+A dog runs.
+A cat sleeps.
+A bird flies.
+A baby sleeps.
+
+The boys run.
+The girls run.
+The dogs run.
+The cats run.
+The birds fly.
+The boys walk.
+The girls walk.
+The dogs walk.
+The cats sleep.
+The dogs sleep.
+The birds sing.
+
+The boy is running.
+The girl is running.
+The dog is running.
+The cat is sleeping.
+The bird is flying.
+The baby is sleeping.
+The boy is walking.
+The girl is walking.
+
+The boys are running.
+The girls are running.
+The dogs are running.
+The cats are sleeping.
+The birds are flying.
+The boys are walking.
+The girls are walking.
+
+The boy eats food.
+The girl eats food.
+The dog eats food.
+The cat eats food.
+The boy eats an apple.
+The girl eats an apple.
+The boy eats bread.
+The girl eats bread.
+The dog eats meat.
+The cat eats meat.
+
+The boys eat food.
+The girls eat food.
+The dogs eat food.
+The cats eat food.
+The boys eat apples.
+The girls eat apples.
+The dogs eat meat.
+The cats eat meat.
+
+The boy reads a book.
+The girl reads a book.
+The boy sees the dog.
+The girl sees the cat.
+The dog sees the boy.
+The cat sees the girl.
+The boy likes the dog.
+The girl likes the cat.
+The boy likes apples.
+The girl likes apples.
+
+The boys read books.
+The girls read books.
+The boys see the dogs.
+The girls see the cats.
+The dogs see the boys.
+The cats see the girls.
+The boys like apples.
+The girls like apples.
+
+The boy has a book.
+The girl has a book.
+The boy has an apple.
+The girl has an apple.
+The dog has food.
+The cat has food.
+
+The boys have books.
+The girls have books.
+The boys have apples.
+The girls have apples.
+The dogs have food.
+The cats have food.
+
+The dog is big.
+The cat is small.
+The boy is tall.
+The girl is tall.
+The apple is red.
+The ball is red.
+The bird is small.
+The house is big.
+The book is new.
+The car is new.
+
+The dogs are big.
+The cats are small.
+The boys are tall.
+The girls are tall.
+The apples are red.
+The balls are red.
+The birds are small.
+The houses are big.
+The books are new.
+The cars are new.
+
+The small dog runs.
+The big dog walks.
+The small cat sleeps.
+The big cat walks.
+The tall boy runs.
+The tall girl walks.
+The red ball falls.
+The small bird flies.
+The big bird flies.
+
+The dog runs fast.
+The boy runs fast.
+The girl runs fast.
+The bird flies fast.
+The boy walks slowly.
+The girl walks slowly.
+The dog walks slowly.
+The cat walks slowly.
+
+The boy runs in the house.
+The girl walks in the house.
+The dog sleeps in the house.
+The cat sleeps in the house.
+The bird flies in the sky.
+The boy plays in the park.
+The girl plays in the park.
+The dog runs in the park.
+The cat walks in the park.
+
+The book is on the table.
+The ball is on the table.
+The apple is on the table.
+The cat is on the chair.
+The dog is near the house.
+The boy is near the car.
+The girl is near the house.
+
+The boy has a red ball.
+The girl has a red ball.
+The boy has a new book.
+The girl has a new book.
+The dog has a big ball.
+The cat has a small ball.
+
+The boy sees a small dog.
+The girl sees a small cat.
+The dog sees a red ball.
+The cat sees a red ball.
+The boy reads a new book.
+The girl reads a new book.
+
+The boy does not run.
+The girl does not run.
+The dog does not run.
+The cat does not sleep.
+The boy does not walk.
+The girl does not walk.
+The dog does not eat.
+The cat does not eat.
+
+The boys do not run.
+The girls do not run.
+The dogs do not run.
+The cats do not sleep.
+The boys do not walk.
+The girls do not walk.
+The dogs do not eat.
+The cats do not eat.
+
+The boy is not running.
+The girl is not running.
+The dog is not sleeping.
+The cat is not sleeping.
+The bird is not flying.
+
+The boys are not running.
+The girls are not running.
+The dogs are not sleeping.
+The cats are not sleeping.
+The birds are not flying.
+
+Does the boy run?
+Does the girl run?
+Does the dog run?
+Does the cat sleep?
+Does the boy walk?
+Does the girl walk?
+Does the dog eat?
+Does the cat eat?
+
+Do the boys run?
+Do the girls run?
+Do the dogs run?
+Do the cats sleep?
+Do the boys walk?
+Do the girls walk?
+Do the dogs eat?
+Do the cats eat?
+
+Is the boy running?
+Is the girl running?
+Is the dog sleeping?
+Is the cat sleeping?
+Is the bird flying?
+
+Are the boys running?
+Are the girls running?
+Are the dogs sleeping?
+Are the cats sleeping?
+Are the birds flying?
+
+The boy ran.
+The girl ran.
+The dog ran.
+The boy walked.
+The girl walked.
+The dog walked.
+The cat slept.
+The baby slept.
+The bird flew.
+
+The boy ate food.
+The girl ate food.
+The dog ate food.
+The cat ate food.
+The boy ate an apple.
+The girl ate an apple.
+
+The boy saw the dog.
+The girl saw the cat.
+The dog saw the boy.
+The cat saw the girl.
+
+The boy had a book.
+The girl had a book.
+The dog had food.
+The cat had food.
+
+The boy will run.
+The girl will run.
+The dog will run.
+The cat will sleep.
+The bird will fly.
+The boy will walk.
+The girl will walk.
+
+The boys will run.
+The girls will run.
+The dogs will run.
+The cats will sleep.
+The birds will fly.
+
+The boy will eat food.
+The girl will eat food.
+The dog will eat food.
+The cat will eat food.
+The boy will read a book.
+The girl will read a book.
+
+The boy can run.
+The girl can run.
+The dog can run.
+The cat can jump.
+The bird can fly.
+The boy can walk.
+The girl can walk.
+
+The boys can run.
+The girls can run.
+The dogs can run.
+The cats can jump.
+The birds can fly.
+
+The boy cannot fly.
+The girl cannot fly.
+The dog cannot fly.
+The cat cannot fly.
+The bird cannot read.
+
+The boy runs and the girl walks.
+The girl reads and the boy plays.
+The dog runs and the cat sleeps.
+The bird flies and the dog runs.
+The boy eats and the girl reads.
+
+The boy has a book and a ball.
+The girl has an apple and a book.
+The dog has food and water.
+The cat has food and water.
+
+The boy runs because he is happy.
+The girl smiles because she is happy.
+The dog runs because it wants food.
+The cat sleeps because it is tired.
+The boy eats because he is hungry.
+The girl eats because she is hungry.
+
+The boy runs when he is happy.
+The girl reads when she is home.
+The dog sleeps when it is tired.
+The cat eats when it is hungry.
+
+The boy sees the dog that is running.
+The girl sees the cat that is sleeping.
+The boy reads the book that is on the table.
+The girl takes the ball that is on the chair.
+
+I am happy.
+I am tired.
+I am hungry.
+I am running.
+I am walking.
+I am reading.
+I have a book.
+I have a ball.
+I have an apple.
+I like dogs.
+I like cats.
+I like books.
+
+You are happy.
+You are tired.
+You are hungry.
+You are running.
+You are walking.
+You are reading.
+You have a book.
+You have a ball.
+You like dogs.
+You like cats.
+
+He is happy.
+She is happy.
+He is tired.
+She is tired.
+He is running.
+She is running.
+He is reading.
+She is reading.
+He has a book.
+She has a book.
+He likes dogs.
+She likes cats.
+
+We are happy.
+We are tired.
+We are running.
+We are walking.
+We are reading.
+We have books.
+We have apples.
+We like dogs.
+We like cats.
+
+They are happy.
+They are tired.
+They are running.
+They are walking.
+They are reading.
+They have books.
+They have apples.
+They like dogs.
+They like cats.
+
+I run.
+You run.
+He runs.
+She runs.
+We run.
+They run.
+
+I walk.
+You walk.
+He walks.
+She walks.
+We walk.
+They walk.
+
+I eat.
+You eat.
+He eats.
+She eats.
+We eat.
+They eat.
+
+I read.
+You read.
+He reads.
+She reads.
+We read.
+They read.
+
+I have a book.
+You have a book.
+He has a book.
+She has a book.
+We have books.
+They have books.
+
+I am running.
+You are running.
+He is running.
+She is running.
+We are running.
+They are running.
+
+I do not run.
+You do not run.
+He does not run.
+She does not run.
+We do not run.
+They do not run.
+
+Do I run?
+Do you run?
+Does he run?
+Does she run?
+Do we run?
+Do they run?
+
+I will run.
+You will run.
+He will run.
+She will run.
+We will run.
+They will run.
+
+I can run.
+You can run.
+He can run.
+She can run.
+We can run.
+They can run.
